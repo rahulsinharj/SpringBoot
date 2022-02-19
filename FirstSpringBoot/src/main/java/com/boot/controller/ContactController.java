@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.boot.dao.UserRepository;
 import com.boot.model.User;
 
-@Controller
+@Controller								// Please remember, this @Controller tag is must in this Controller Class - for handling URL mappings  
 public class ContactController {
 
 	@Autowired
