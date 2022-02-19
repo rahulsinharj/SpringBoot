@@ -111,28 +111,20 @@ public class ContactController {
 	{
 		if(user.getUserEmail().isBlank() || user.getUserName().isBlank() || user.getUserPassword().isBlank()) {
 			System.out.println("Please fill all fields..");
-			return "redirect:/contact";											// ReDirecting to other URL {either by redirect-prefix, or by RedirectView }
+			return "redirect:/contact";								// ReDirecting to other URL {either by redirect-prefix, or by RedirectView }
 		}
 		
-		User savedUser = this.userRepo.save(user);				// Will return the saved user obj {which has been just stored in Database repository}
+		User savedUser = this.userRepo.save(user);					// Will return the saved user obj {which has been just stored in Database repository}
 		System.out.println(user);
 		// put your DB operation here {like- insert,update, or any Calculation operations}
 		
 		m.addAttribute("userResponse", "User created with id : "+ savedUser.getUserId());
 		
-		return "success";						// returning "success.jsp" page to the caller
+		return "success";											// returning "success.jsp" page to the caller
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	
 	
