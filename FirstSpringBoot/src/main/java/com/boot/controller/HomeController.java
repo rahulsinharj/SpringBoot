@@ -16,7 +16,7 @@ public class HomeController {		/*			Tomcat will be run on   http://localhost:808
 	@RequestMapping("/")
 	@ResponseBody
 	public String demo() {
-		return "Welcome RAHUL to SpringBoot HomePage";
+		return "Welcome, Please use these URLs :  /contact , /contact/{userId} , /home , /about ";
 	}
 	
 	@RequestMapping("/home")							// URL Handler method
@@ -50,16 +50,7 @@ public class HomeController {		/*			Tomcat will be run on   http://localhost:808
 		return "about";
 	}
 	
-/*-------------------------------------------------------------------------------------------------------------------------
-----PRACTICE CODES---------------------------------------------------------------------------------------------------------*/
-	
-	
 
-	
-//-------------------------------------------------------------------------	
-	
-	
-	
 	
 	
 	

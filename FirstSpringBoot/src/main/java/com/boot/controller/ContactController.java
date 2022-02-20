@@ -1,9 +1,12 @@
 package com.boot.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -123,8 +126,42 @@ public class ContactController {
 		return "success";											// returning "success.jsp" page to the caller
 	}
 	
+
+
+/* Here We are fetching USER Entries from DB :
+  
+ * PathVariable annotation is used to bind method parameter (int userId) to template URI variable {userId}.
+ * Here below URL wale "userId" ne apne value ko int userId se bind kar diya hai.
+ --------------------------------------------------------------------------------------------------------------*/
 	
+	@RequestMapping("/contact/{userId}")											// here we can change the word "contact" to "user"  in =>  "/contact/{userId}" , because it's not dependent with "/contact" handler
+	public String getUserDetails(@PathVariable("userId") int userId , Model m)
+	{
+		System.out.println("userId : "+userId);
 		
+//		User usr = this.userRepo.findById(userId).get();				// This fetch is working fine, but userid validation is recommended.
+		
+		Optional<User> myuser = this.userRepo.findById(userId);			// It's recommended to first check whether user with this "userid" is present or not. Check by isPresent() method below.
+		User usr = new User();
+		if(myuser.isPresent()) {
+			usr = myuser.get();
+		}
+		
+		m.addAttribute("usr",usr);
+		
+		return "showuser";
+	}
+	
+/*
+	When using two template URI variable , that is /contact/15/rahul
+	Use below method prototype :
+	
+	@RequestMapping("/contact/{userId}/{userName}")
+	public String getUserDetails(@PathVariable("userId") int userId, @PathVariable("userName") int userName) {
+	
+	}	
+*/
+	
 	
 	
 	
