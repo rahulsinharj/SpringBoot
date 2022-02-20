@@ -20,7 +20,7 @@
 <body>
 <div class="container">
 
-	<h1 class="text-center m-4">Search home page :</h1>
+	<h1 class="text-center m-4">My Search home page :</h1>
 
 	<div class="card mx-auto mt-5 bg-secondary" style="width: 50%;">
 		<div class="card-body py-5">

@@ -16,6 +16,7 @@ public class SearchController {
 	
 	@RequestMapping("/home")											// Ye handler -> form ko dikhane ke liye
 	public String home() {
+		System.out.println("Going to Homepage..");
 		return "home";
 	}
 	
