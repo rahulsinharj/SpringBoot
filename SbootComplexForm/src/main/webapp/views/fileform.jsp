@@ -15,15 +15,28 @@
 <title>Upload Image</title>
 </head>
 <body>
-	<div class="container p-5">
-		<h1>Upload Image</h1>
+<div class="container p-5">
+		<h1>Upload Single Image</h1>
 		<form action="uploadimage" method="post" enctype="multipart/form-data">		<!-- // enctype ka matlab ki jo data bhej rahe hai yaha se, wo MULTIPART type ka hai   -->
 			<div class="form-group">
-				<label for="exampleFormControlFile1">Select your image</label> 
-				<input type="file" name="profile" class="form-control-file" id="exampleFormControlFile1">		<!-- // Input type me "file" daalna hai -->
+				<label for="exampleFormControlFile1">Select only 1 image :</label> 
+				<input type="file" name="profile" class="form-control-file" id="exampleFormControlFile1"  >		<!-- // Input type me "file" daalna hai -->
 			</div>
 
 			<button class="btn btn-outline-success">Upload</button>
+		</form>
+
+	</div>
+
+<hr>	<div class="container p-5">
+		<h1>Upload Multiple Images</h1>
+		<form action="uploadimages" method="post" enctype="multipart/form-data">		<!-- // enctype ka matlab ki jo data bhej rahe hai yaha se, wo MULTIPART type ka hai   -->
+			<div class="form-group">
+				<label for="exampleFormControlFile1">Select multiple images :</label> 
+				<input type="file" name="profile" class="form-control-file" id="exampleFormControlFile1" multiple >		<!-- // Input type me "file" daalna hai -->
+			</div>
+
+			<button class="btn btn-outline-danger">Upload</button>
 		</form>
 
 	</div>
