@@ -29,6 +29,11 @@ public class FileUploadController {
 	@RequestMapping(path = "/uploadimage", method = RequestMethod.POST)
 	public String uploadSingleImage(@RequestParam("profile") MultipartFile file, HttpSession ses, Model model ) 
 	{
+		if(file.isEmpty()) {
+			System.out.println("f : "+file );
+			return "redirect:fileform";
+		}
+		
 		System.out.println("Inside File upload handler...");
 
 		System.out.println("File size : " +file.getSize()/1024 +" kb");				// Return the size of the file in bytes , now in Kb now
@@ -69,10 +74,11 @@ public class FileUploadController {
 	public String uploadMultipleImages(@RequestParam("profile") MultipartFile[] multifiles, HttpSession ses, Model model ) 
 	{
 		ArrayList<String> upfilesnames = new ArrayList<String>();
-		for(MultipartFile file : multifiles) 							// Handling multiple files
-		{
-			try {
-				
+		try 
+		{	// Write here some null handler code when directly click upload button without even uploading 
+			
+			for(MultipartFile file : multifiles) 							// Handling multiple files
+			{
 				byte[] data = file.getBytes();											// Getting the Byte data from the uploaded file.											
 				String path = ses.getServletContext().getRealPath("/") + "static" + File.separator + "image"
 						+ File.separator + file.getOriginalFilename();
@@ -84,17 +90,16 @@ public class FileUploadController {
 				
 				upfilesnames.add(file.getOriginalFilename());
 				model.addAttribute("msg","Files Uploaded Successfully..!!");
-					
 				
-			} catch (IOException e) {
-				System.out.println("Error in uploading..");
-				model.addAttribute("msg","Error in File uploading..!!");
-				e.printStackTrace();
-			}
-
+			} 
+		}
+		catch (IOException e) {
+			System.out.println("Error in uploading..");
+			model.addAttribute("msg","Error in File uploading..!!");
+			e.printStackTrace();
 		}
 		model.addAttribute("filename",upfilesnames);
-				
+		
 		return "filesuccess";
 	}
 }

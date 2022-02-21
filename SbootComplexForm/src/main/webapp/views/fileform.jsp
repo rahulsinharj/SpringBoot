@@ -36,7 +36,7 @@
 				<input type="file" name="profile" class="form-control-file" id="exampleFormControlFile1" multiple >		<!-- // Input type me "file" daalna hai -->
 			</div>
 
-			<button class="btn btn-outline-danger">Upload</button>
+			<button class="btn btn-outline-danger">Upload All</button>
 		</form>
 
 	</div>
