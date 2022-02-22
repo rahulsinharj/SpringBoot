@@ -6,5 +6,5 @@ import com.boot.model.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-	
+	User findByuserEmail(String userEmail);
 }

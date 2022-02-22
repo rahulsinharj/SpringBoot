@@ -37,22 +37,22 @@
 						
 							<div class="form-group">
 								<label for="stuname">Your Name</label> 
-								<input name="stuname" type="text" class="form-control" id="stuname" aria-describedby="stuname" placeholder="Enter Name"> 
+								<input name="stuname" type="text" class="form-control" id="stuname" aria-describedby="stuname" placeholder="Enter Name" required="true"> 
 							</div>
 
 							<div class="form-group">
 								<label for="sturoll">Your Roll No</label> 
-								<input name="sturoll" type="text" class="form-control" id="sturoll" aria-describedby="sturoll" placeholder="Enter Roll no"> 
+								<input name="sturoll" type="text" class="form-control" id="sturoll" aria-describedby="sturoll" placeholder="Enter Roll no" required="true"> 
 							</div>
 
 							<div class="form-group">
 								<label for="stuemail">Your Email id</label> 
-								<input name="stuemail" type="email" class="form-control" id="stuemail" aria-describedby="stuemail" placeholder="Enter Email ID">
+								<input name="stuemail" type="email" class="form-control" id="stuemail" aria-describedby="stuemail" placeholder="Enter Email ID" required="true">
 							</div>
 							
 							<div class="form-group">
 								<label for="studob">Your DOB</label> 
-								<input name="studob" type="date" class="form-control" id="studob" placeholder="DD/MM/YYYY" aria-describedby="emailHelp">
+								<input name="studob" type="date" class="form-control" id="studob" placeholder="DD/MM/YYYY" aria-describedby="emailHelp" required="true">
 							</div>
 
 							<div class="form-group">
@@ -68,11 +68,11 @@
 							<div class="form-group">
 								<span class="mr-3"> Select Gender </span>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male"> 
+									<input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" required> 
 									<label class="form-check-label" for="inlineRadio1">Male</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female"> 
+									<input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female" required> 
 									<label class="form-check-label" for="inlineRadio2">Female</label>
 								</div>
 
@@ -92,11 +92,11 @@
 									
 									<p>Your address</p>
 									<div class="form-group">
-										<input name="address.street" type="text" class="form-control" placeholder="Enter Street" />
+										<input name="address.street" type="text" class="form-control" required="true" placeholder="Enter Street" />
 									</div>
 
 									<div class="form-group">
-										<input name="address.city" type="text" class="form-control" placeholder="Enter City" />
+										<input name="address.city" type="text" class="form-control" required="true" placeholder="Enter City" />
 									</div>
 								</div>
 							</div>
