@@ -34,7 +34,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	@Query("select u from User u where u.city = :ct and u.age = :ag")					 
 	public List<User> getUserByCityAndAge(@Param("ct") String city , @Param("ag") int age);	
 	
-	@Query("select u from User u where u.name like :prefixWord% ")					// u.name starts with some word 
+	@Query("select u from User u where u.name like :prefixWord% ")					// u.name starts with some word => where u.name like :word%   {see the use of %} 
 	public List<User> getUserByNameStartWith(@Param("prefixWord") String word);	
 	
 	@Query("select u from User u where u.status like %:inword% ")					// u.status having inbetween some word 
