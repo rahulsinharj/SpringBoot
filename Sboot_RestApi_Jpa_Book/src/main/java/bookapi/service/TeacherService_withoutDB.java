@@ -34,7 +34,9 @@ public class TeacherService_withoutDB {
 	public Teacher getSingleTeacherById(int id) {
 		Teacher teacher = null;
 		try {
-			teacher = tlist.stream().filter(e -> e.getTid() == id).findFirst().get();
+			teacher = tlist.stream().filter(t -> t.getTid() == id).findFirst().get();
+//			teacher = tlist.stream().filter(t -> t.getTid() == id).collect(Collectors.toList()).get(0);
+					
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,6 +52,7 @@ public class TeacherService_withoutDB {
 		return teacher;
 	}
 
+	// Saving a teacher
 	public Teacher saveTeacher(Teacher b) {
 		try {
 			tlist.add(b);
@@ -59,6 +62,7 @@ public class TeacherService_withoutDB {
 		return b;
 	}
 
+	// Deleting a teacher , through its ID
 	public List<Teacher> deleteTeacherById(int tid) // Delete and show the rest teachers
 	{
 		try {
