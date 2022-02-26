@@ -7,103 +7,93 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import bookapi.entity.Book;
+import bookapi.entity.Teacher;
 
 //@Service								// Service work as way as component , but here it is somewhat more readable
 @Component
-public class BookService_withoutDB {
-    
-    private static List<Book> booklist = new ArrayList<>();
+public class TeacherService_withoutDB {
 
-    static{
-//    	booklist.add(new Book(101, "Knowledge World book"  , "Nirbhay Sinha"));
-//        booklist.add(new Book(102, "Java world book"       , "Rahul Sinha"));
-//        booklist.add(new Book(103, "Python world book" 	   , "Vikash Sharma"));
-//        booklist.add(new Book(104, "Ruby world book" 	   , "Shyam Kumar"));
-//        booklist.add(new Book(105, "MongoDB world book"    , "Priya Mehta"));
-//        booklist.add(new Book(106, "PostgreSQL world book" , "Govind Kumar"));
-//        booklist.add(new Book(107, "MySQL world book" 	   , "Shubham Tiwari"));
-    }
+	private static List<Teacher> tlist = new ArrayList<>();
 
-    // Get All Books
-    public List<Book> getAllBooks()
-    {
-        return booklist;
-    }
+	static {
+		tlist.add(new Teacher(101, "Nirbhay Sinha", "Maths"));
+		tlist.add(new Teacher(102, "Rahul Sinha", "Science"));
+		tlist.add(new Teacher(103, "Vikash Sharma", "Geography"));
+		tlist.add(new Teacher(104, "Shyam Kumar", "Chemistry"));
+		tlist.add(new Teacher(105, "Priya Mehta", "Physics"));
+		tlist.add(new Teacher(106, "Govind Kumar", "History"));
+		tlist.add(new Teacher(107, "Shubham Tiwari", "Ecomonics"));
+	}
 
-    // Get single Book by ID
-    public Book getSingleBookById(int id)
-    {
-        Book book = null;
-        try {
-			book = booklist.stream().filter(e->e.getId()==id).findFirst().get();
-		} 
-        catch (Exception e) {
+	// Get All Books
+	public List<Teacher> getAllTeachers() {
+		return tlist;
+	}
+
+	// Get single Book by ID
+	public Teacher getSingleTeacherById(int id) {
+		Teacher teacher = null;
+		try {
+			teacher = tlist.stream().filter(e -> e.getTid() == id).findFirst().get();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        
-//        for(Book b : booklist) 
+
+//        for(Teacher t : tlist) 
 //        {
-//        	if(b.getId()==id) {
-//        		book=b;
+//        	if(t.getTid()==id) {
+//        		teacher=t;
 //        		break;
 //        	}
 //        }
-        
-        return book;
-    }
 
-	public Book saveBook(Book b) 
-	{
+		return teacher;
+	}
+
+	public Teacher saveTeacher(Teacher b) {
 		try {
-			booklist.add(b);
-		} 
-		catch (Exception e) {
+			tlist.add(b);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return b;
 	}
-    
-//	public List<Book> deleteBookById(int bid)
+
+	public List<Teacher> deleteTeacherById(int tid) // Delete and show the rest teachers
+	{
+		try {
+			tlist = tlist.stream().filter(t -> t.getTid() != tid).collect(Collectors.toList());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tlist;
+	}
+
+//	public void deleteTeacherById(int bid)					// Delete but then NOT showing the rest teachers
 //	{
 //		try {
-//			booklist = booklist.stream().filter(book -> book.getId()!=bid).collect(Collectors.toList());
+//			tlist = tlist.stream().filter(book -> book.getTid()!=bid).collect(Collectors.toList());
 //		} 
 //		catch (Exception e) {
 //			e.printStackTrace();
 //		}
-//		return booklist;
 //	}
 
-	public void deleteBookById(int bid)
-	{
+	public List<Teacher> updateTeacher(int bid, Teacher newtecher) {
 		try {
-			booklist = booklist.stream().filter(book -> book.getId()!=bid).collect(Collectors.toList());
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public List<Book> updateBook(int bid, Book newbook) 
-	{
-		try {
-			booklist = booklist.stream().map(b->{							// map ke "b" aapko Book ka ek-ek obj deta jayega, but it will also expect one obj of same type in return.  
-				if(b.getId()==bid)
-				{
-					b.setTitle(newbook.getTitle());
-					b.setAuthor(newbook.getAuthor());
+			tlist = tlist.stream().map(t -> { // map ke "b" aapko Book ka ek-ek obj deta jayega, but it will also expect
+												// one obj of same type in return.
+				if (t.getTid() == bid) {
+					t.setTname(newtecher.getTname());
+					t.setTsubject(newtecher.getTsubject());
 				}
-				return b;
+				return t;
 			}).collect(Collectors.toList());
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return booklist;
+
+		return tlist;
 	}
-	
-	
+
 }

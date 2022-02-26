@@ -1,6 +1,5 @@
 package bookapi.controller;
 
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bookapi.entity.Book;
 import bookapi.service.BookService;
-import bookapi.service.BookService_withoutDB;
 
 @RestController
 public class BookController {
@@ -25,15 +23,6 @@ public class BookController {
 	@Autowired
 	private BookService bookService;	
 	
-//	@Autowired
-//	private BookService_withoutDB bookService2;
-	
-	
-//    @GetMapping("/books")										// Handler for - Getting All Books 
-//    public List<Book> getAllBooks() 
-//    {
-//    	return this.bookService.getAllBooks();
-//    }
     
     @GetMapping("/books")										// Handler for - Getting All Books 
     public ResponseEntity<List<Book>> getAllBooks() 
@@ -47,16 +36,7 @@ public class BookController {
     	return ResponseEntity.status(HttpStatus.OK).body(allBooks);
     }
     
-    
-    
-//    @GetMapping("/books/{id}")									// Handler for - Getting Single Book 
-//    public Book getSingleBook(@PathVariable("id") int id) 
-//    {
-//    	Book b= this.bookService.getSingleBookById(id);
-//    		System.out.println(b);
-//    	return b;
-//    }
-     
+       
     @GetMapping("/books/{id}")									// Handler for - Getting Single Book 
     public ResponseEntity<Book> getSingleBook(@PathVariable("id") int id) 
     {
@@ -70,15 +50,7 @@ public class BookController {
     
     
 /*   [POST MAPPING] ::
- -------------------------------------------------------------------------------------------------------------------*/
-    
-//    @PostMapping("/books")										// Handler for - Creating new Book
-//    public Book addBook(@RequestBody Book book) 				// @RequestBody - same way @RequestParam
-//    {
-//    	Book b = this.bookService.saveBook(book);
-//    	return b ;
-//    }
-    
+ -------------------------------------------------------------------------------------------------------------------*/   
     
     // Post and get all BOOKS :
 //    @PostMapping("/books")										// Handler for - Creating new Book
@@ -133,13 +105,7 @@ public class BookController {
     
 /*   [DELETE MAPPING] ::
  -------------------------------------------------------------------------------------------------------------------*/    
-    
-//    @DeleteMapping("/books/{bookId}")
-//    public List<Book> deleteBook(@PathVariable("bookId") int bookId )		// Handler for - deleting single Book
-//    {
-//    		return this.bookService.deleteBookById(bookId);
-//    }
-	   
+
 	@DeleteMapping("/books/{bookId}")
 	public ResponseEntity<Void> deleteBook(@PathVariable("bookId") int bookId )		// Handler for - deleting single Book
 	{
@@ -155,7 +121,23 @@ public class BookController {
 		}
 	}	
 	  
-    
+/* [JSON Object send from client ::]
+   ----------------------------------
+		    {
+        		"id": 1,
+        		"title": "Java Certification Book",
+        		"author": {
+            			"authorId": 1,
+            			"firstName": "Rahul",
+            			"lastName": "Sinha",
+            			"language": "English"
+				 }
+    		}
+
+
+
+*/
+	
     
     
 }
