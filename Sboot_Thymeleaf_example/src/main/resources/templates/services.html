@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Replace-Insert-Include</title>
+</head>
+<body>
+	<h1>These are the Services provided by Thymeleaf</h1>
+
+	<!-- // Going to bring Footer here , using  th:replace ,  th:insert ,  th:include   -->
+	<!-- //  'id' is not important in footer, only 'th:include' is important  -->
+	
+	<footer id="hostTag1" th:include="footer::footer1"> </footer>
+
+	<footer id="hostTag2" th:replace="footer::footer2(${mainTitle}, ${mainDate}, 'This is my Footer2', 'This is my subFooter text')">
+	</footer>
+
+
+</body>
+</html>

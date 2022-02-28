@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+												<!-- 	th:text="${}" 	-->
+<meta charset="UTF-8" />
+<title>Iterate</title>
+</head>
+<body>
+
+	<h1 th:text="${names}"></h1>
+
+	<ul>
+		<li th:each="n : ${names}">
+			<h2 th:text="${n}"></h2>
+		</li>
+	</ul>
+
+	<hr />
+
+	<ul>
+		<li th:each="n,status : ${names}">
+			<span th:style="${status.odd} ? 'font-weight:bold' : 'color:red; font-style:italic' "
+				  th:text="${status.index}+' -- '+${n}">
+			</span>
+		</li>
+	</ul>
+
+	<!-- // th:each ke paas ek variable hai "status" , ye loop ka pura status provide karta hai. "status has below properties"
+	
+			index : The current iteration index , Starting with zero 
+			count : The number of elements processed so far 
+			size  : The total number of elements in the list 
+			even/odd : Check if the current iteration index is even or odd
+			first :  Check if the current iteration is the first one  
+			last  :  Check if the current iteration is the last one 
+	-->
+
+
+</body>
+</html>

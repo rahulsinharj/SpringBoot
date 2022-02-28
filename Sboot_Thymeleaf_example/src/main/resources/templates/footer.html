@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Footer Tab</title>
+</head>
+<body>
+
+	<footer id="fragmentTag1" th:fragment="footer1">					<!-- // 'id' is not compulsory to write here , only  th:fragment is important  -->
+
+		<div class="container">
+
+			<h2>About Rahul Sinha</h2>
+			<h2>He is a very good software engineer</h2>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas
+				quasi magni atque quae possimus pariatur libero perspiciatis qui
+				eaque id quam earum recusandae quos autem aspernatur iste assumenda
+				ab delectus eos alias voluptatum dolore fuga. Corrupti porro
+				accusantium earum tenetur debitis molestiae ducimus saepe omnis in
+				ipsam minima atque dicta.</p>
+
+
+		</div>
+	</footer>
+
+<!-- // Passing Dynamic values from th:fragment to th:replace/th:insert/th:include/  -->
+	<footer id="fragmentTag2" th:fragment="footer2(controllerGivenTitle, controllerGivenDate, innerTitle, subTitle)">
+
+		<div class="container">
+
+			<h2>MY PROJECT on Thymeleaf</h2>
+			<h3 th:text="${controllerGivenTitle}"></h3>
+			<h3 th:text="${controllerGivenDate}"></h3>
+			
+			<h3 th:text="${innerTitle}"></h3>
+			<h3 th:text="${subTitle}"></h3>
+			<h2> Thank you Rahul..!</h2>
+		</div>
+	</footer>
+
+
+</body>
+</html>
