@@ -33,6 +33,21 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!--  // Include below 2 dependencies for using => accessing DATABASE support  -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<!-- <version>8.0.28</version>  -->
+		</dependency>
+
+
 		<!--  // Include below 2 dependencies for using => accessing JSP pages support  -->
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
 		<dependency>

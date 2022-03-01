@@ -4,9 +4,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
+@Table(name = "complex_student_form")
 public class StudentForm {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int sid;
 
 	private String stuname;
 	private String stuemail;
@@ -15,7 +28,9 @@ public class StudentForm {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date studob;
 	
+	@ElementCollection								// For handling List of <Strings, Integers>
 	private List<String> courses;
+	
 	private String gender;
 	private String type;
 	
@@ -63,6 +78,12 @@ public class StudentForm {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public int getSid() {
+		return sid;
+	}
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
 	public Address getAddress() {
 		return address;
 	}
@@ -71,9 +92,9 @@ public class StudentForm {
 	}
 	@Override
 	public String toString() {
-		return "StudentForm [stuname= " + stuname + ", stuemail= " + stuemail + ", sturoll= " + sturoll + ", studob= "
-				+ new SimpleDateFormat("dd/MM/yyyy").format(studob) + ", courses= " + courses + ", gender= " + gender + ", type= " + type + ", address= " + address
-				+ "]";
+		return "StudentForm [sid= " + sid + ", stuname= " + stuname + ", stuemail= " + stuemail + ", sturoll= " + sturoll
+				+ ", studob= " + new SimpleDateFormat("dd/MM/yyyy").format(studob) + ", courses= " + courses + ", gender= " + gender + ", type=" + type + ", address="
+				+ address + "]";
 	}
 	
 	

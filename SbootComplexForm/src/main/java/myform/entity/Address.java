@@ -1,6 +1,9 @@
 package myform.entity;
 
-public class Address {
+import javax.persistence.Embeddable;
+
+@Embeddable							// Agar One to one hai to bas agar se dusra table banake @OneToOne mapping karne koi zarurat nhi, direct main Student table hi Address ko embedd kar do.
+public class Address {				// But if we require to insert multiple Address then we need to do @OneToMany mapping for Address proeprty in Student class, then ye lagake cascase.all karne padega, taaki Address wala table entries bhi Student table me sath me hi auto save hojaye. Dobara se isko save na karna apade.   
 
 	private String street;
 	private String city;
@@ -21,5 +24,7 @@ public class Address {
 	public String toString() {
 		return "Address [street=" + street + ", city=" + city + "]";
 	}
+	
+	
 	
 }
