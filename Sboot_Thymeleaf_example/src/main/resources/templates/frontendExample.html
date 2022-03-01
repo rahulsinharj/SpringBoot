@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  
+<head>
+<meta charset="ISO-8859-1">
+<title>FrontendExample</title>
+
+<link rel="stylesheet" href="" th:href="@{/css/mystyle.css}" />			<!-- // href="" is now no required at all , since now we are already using th:href=""   -->
+
+</head>
+<body>
+
+	<div class="container">
+		
+		<h1>Adding CSS , JavaScript and Images in Thymeleaf !</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi natus provident expedita placeat deserunt adipisci mollitia aperiam ratione magni veniam illum quasi officia rerum eius aut quibusdam doloribus minima commodi praesentium fugiat. Dolor nobis accusantium natus consectetur unde labore quia magni explicabo deleniti cupiditate et expedita assumenda illum at soluta.</p>	
+	
+		<img src="" th:src="@{/image/rj.jpg}" alt="RjPic" class="profile" />
+		
+	</div>
+	
+	<script src="" th:src="@{/js/myjs.js}"  ></script>				<!-- // use this =>  th:src="@{/js/myjs.js}  if you want apply JS  -->
+
+
+	
+</body>
+</html>
