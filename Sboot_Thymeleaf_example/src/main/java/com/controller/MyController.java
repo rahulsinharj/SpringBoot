@@ -58,8 +58,9 @@ public class MyController {
 	
 
 	@GetMapping("/inherit")
-	public String inheritHandler()			// For checking Inherit functionality in Thymeleaf 
+	public String inheritHandler(Model model)			// For checking Inherit functionality in Thymeleaf 
 	{
+		model.addAttribute("headingTitle","Controller given TITLE");	// put as <title th:text="${headingTitle}"></title>  in "base.html" file
 		return "inherit";
 	}
 	

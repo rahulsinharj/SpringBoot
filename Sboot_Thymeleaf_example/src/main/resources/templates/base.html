@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">  
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">  <!-- Iska matlab ki jo bhi iss layout() ko call karege, usme jobhi content bhejega wo iss base.html ke andar mil jayega  -->
 <head>
 <meta charset="ISO-8859-1">
-<title>Base HTML</title>
+<title th:text="${headingTitle}">Base HTML</title>
 
 <!--  th:href="@{ / }"   se hamlog '/src/main/resources/static'  tak automatically pahoch jayege  -->
 
