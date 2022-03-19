@@ -14,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {		/*			Tomcat will be run on   http://localhost:8080/				*/
 
 	@RequestMapping("/")
-	@ResponseBody
-	public String demo() {
+	@ResponseBody					// because @Controller annotated class ke through bydefault "index" .html webpage return hota hai , json text data nhi. // So if we want some mapping to explicitly return json text not webpage, in that case @ResponseBody annotation is used , for sending some text data through @Controller annotated class,  
+	public String demo() {										// RestController annotated class ke through bydefault json text return hota hai, "index" .html webpage nhi.
 		return "Welcome, Please use these URLs :  /contact , /contact/{userId} , /home , /about ";
 	}
 	
