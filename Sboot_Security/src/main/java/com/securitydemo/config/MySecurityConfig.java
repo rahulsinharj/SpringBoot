@@ -39,7 +39,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.authorizeRequests()		
 //			.antMatchers("/admin/**").hasRole("ADMIN")			// bydefault role me "ROLE_" already append rehta hai.	
 //			.antMatchers("/users/**").hasRole("NORMAL")			// If we comment this line, that means we are not mentioning here security for "/users" => that means "/users" ke liye koi ROLE_ based authentication nhi karna hai, bas normal username&password Authentication hoga.  
-//			.antMatchers("/public/**").permitAll()				// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
+//			.antMatchers("/public/**").permitAll()		// Better to use .antMatchers("/**").permitAll()	// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
 //			.anyRequest()				
 //			.authenticated()			
 //			.and().httpBasic();			
@@ -52,7 +52,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 * 	Jab bhi hum POST ya PUT method maarege to CSRF bydefault enabled ke wagah se hame POST/PUT karne ka allow nhi dega.
 		Therefore we explicitely have to disable it, for using POST/PUT	. Because this POST/PUT api here will be called by non-browser client (i.e, any application) 
 
-*	Also doing SpringBoot created "Inbuilt Form Based Authentication" , despite of "Basic HTTP Based Authentication"
+*	Also doing SpringBoot created "Inbuilt Form Based Authentication" , despite of "Basic-HTTP Based Authentication"
 -------------------------------------------------------------------------------------------------------------------*/
 	@Override																
 	protected void configure(HttpSecurity http) throws Exception {
@@ -61,11 +61,12 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()		
 			.antMatchers("/admin/**").hasRole("ADMIN")			// bydefault role me "ROLE_" already append rehta hai.	
 			.antMatchers("/users/**").hasRole("NORMAL")			// If we comment this line, that means we are not mentioning here security for "/users" => that means "/users" ke liye koi ROLE_ based authentication nhi karna hai, bas normal username&password Authentication hoga.  
-			.antMatchers("/public/**").permitAll()				// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
+			.antMatchers("/public/**").permitAll()	 	// Better to use .antMatchers("/**").permitAll()	// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
 			.anyRequest()				
 			.authenticated()			
-//			.and().httpBasic();				// Basic HTTP Based Authentication
-			.and().formLogin();				// SpringBoot created "Inbuilt Form" Based Authentication
+//			.and().httpBasic();							// Basic-HTTP Based Authentication
+			.and().formLogin();							// SpringBoot created "Inbuilt Form" Based Authentication
+//			.and().formLogin().loginPage("/signin"); 		// Custom LOGIN/Signin page bhi banke uske authentication page ki tarah treat karwa sakte hai.
 	}
 	
 
