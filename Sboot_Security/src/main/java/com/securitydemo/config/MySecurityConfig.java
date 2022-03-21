@@ -1,5 +1,8 @@
 package com.securitydemo.config;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,14 +10,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)						// Iss line se @PreAuthorize("hasRole('ADMIN')") jo use kiye hai UserController class me wo annotation Enable ho jayega. 
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
+	private static final Log logger = LogFactory.getLog(MySecurityConfig.class);
+	
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
 	
 /* 	Basic Authentication me Logout nhi hota hai. , and login user check bhi basic http based hojata hai.
  * 		Also, without any AntMatcher -> SpringSecurtiy will provide authentication for all the URLs.	
@@ -59,14 +64,14 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.csrf().disable()								// Disabling the CSRF for using POST/PUT
 			.authorizeRequests()		
-			.antMatchers("/admin/**").hasRole("ADMIN")			// bydefault role me "ROLE_" already append rehta hai.	
-			.antMatchers("/users/**").hasRole("NORMAL")			// If we comment this line, that means we are not mentioning here security for "/users" => that means "/users" ke liye koi ROLE_ based authentication nhi karna hai, bas normal username&password Authentication hoga.  
-			.antMatchers("/public/**").permitAll()	 	// Better to use .antMatchers("/**").permitAll()	// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
+			.antMatchers("/admin/**").hasRole("ADMIN")		// bydefault role me "ROLE_" already append rehta hai.	
+			.antMatchers("/users/**").hasRole("NORMAL")		// If we comment this line, that means we are not mentioning here security for "/users" => that means "/users" ke liye koi ROLE_ based authentication nhi karna hai, bas normal username&password Authentication hoga.  
+			.antMatchers("/public/**").permitAll()	 		// Better to use .antMatchers("/**").permitAll()	// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
 			.anyRequest()				
 			.authenticated()			
-//			.and().httpBasic();							// Basic-HTTP Based Authentication
-			.and().formLogin();							// SpringBoot created "Inbuilt Form" Based Authentication
-//			.and().formLogin().loginPage("/signin"); 		// Custom LOGIN/Signin page bhi banke uske authentication page ki tarah treat karwa sakte hai.
+//			.and().httpBasic();								// Basic-HTTP Based Authentication
+			.and().formLogin();								// SpringBoot bydefault-created "Inbuilt Form Page" Based Authentication
+//			.and().formLogin().loginPage("/signin"); 		// "Custom LOGIN/Signin" page bhi banke uske authentication page ki tarah treat karwa sakte hai.
 	}
 	
 
@@ -112,17 +117,19 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 /* 	[ inMemoryAuthentication i.e,  Making our own USER and Password, keeping them only temporarily i.e, in MainMemory storage ::] 
  *  	& Encrypting our Password by using "BCryptPasswordEncoder" (i.e, Whatever password given by user -> will be getting Encrypted )	
  -------------------------------------------------------------------------------------------------------------------*/	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-		auth.inMemoryAuthentication().withUser("rahul").password(this.passwordEncoder().encode("rahul1")).roles("ADMIN","NORMAL");		// Giving multiple ROLEs to ADMIN => So that admin can access "/admin/**" Url pages, and as well "/users/**" Url pages
-		auth.inMemoryAuthentication().withUser("vikas").password(this.passwordEncoder().encode("vikas1")).roles("NORMAL");				// bydefault role me "ROLE_" already append rehta hai.
-	}
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//
+//		auth.inMemoryAuthentication().withUser("rahul").password(this.passwordEncoder().encode("rahul1")).roles("ADMIN","NORMAL");		// Giving multiple ROLEs to ADMIN => So that admin can access "/admin/**" Url pages, and as well "/users/**" Url pages
+//		auth.inMemoryAuthentication().withUser("vikas").password(this.passwordEncoder().encode("vikas1")).roles("NORMAL");				// bydefault role me "ROLE_" already append rehta hai.
+//	
+//		logger.info("inMemoryAuthentication - with BCryptPasswordEncoder");
+//	}
 
 /* 	Encrypting password through "BCryptPasswordEncoder"
  -------------------------------------------------------------------------------------------------------------------*/
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(10);
 	}
 
@@ -135,7 +142,13 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
  -------------------------------------------------------------------------------------------------------------------*/
 	
 	
+/* 	Configuring through JPA(Database) based authentication ::		
+ -------------------------------------------------------------------------------------------------------------------*/
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+	}
 	
 	
 }

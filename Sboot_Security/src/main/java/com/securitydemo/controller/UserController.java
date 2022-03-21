@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.securitydemo.model.User;
+import com.securitydemo.service.UserDbService;
 import com.securitydemo.service.UserService;
 
 @RestController
@@ -20,10 +21,16 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private UserDbService userDbService;
+	
+	
 	@GetMapping("/")
 	public List<User> getAllUsers()
 	{
-		return this.userService.getAllUsers();
+//		return this.userService.getAllUsers();
+		return this.userDbService.getAllUsers();
+		
 	}
 	
 //	@PreAuthorize("hasRole('ADMIN')")
