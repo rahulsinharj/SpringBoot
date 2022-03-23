@@ -31,13 +31,13 @@ public class TeacherService_withoutDB {
 	}
 
 	// Get single Book by ID
-	public Teacher getSingleTeacherById(int id) {
+	public Teacher getSingleTeacherById(int id) 
+	{
 		Teacher teacher = null;
 		try 
 		{
 			teacher = tlist.stream().filter(t -> t.getTid() == id).findFirst().get();
-//			teacher = tlist.stream().filter(t -> t.getTid() == id).collect(Collectors.toList()).get(0);
-					
+//			teacher = tlist.stream().filter(t -> t.getTid() == id).collect(Collectors.toList()).get(0);					
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -55,7 +55,8 @@ public class TeacherService_withoutDB {
 	}
 
 	// Saving a teacher
-	public Teacher saveTeacher(Teacher b) {
+	public Teacher saveTeacher(Teacher b) 
+	{
 		try 
 		{
 			tlist.add(b);
@@ -90,7 +91,8 @@ public class TeacherService_withoutDB {
 //		}
 //	}
 
-	public List<Teacher> updateTeacher(int bid, Teacher newtecher) {
+	public List<Teacher> updateTeacher(int bid, Teacher newtecher) 
+	{
 		try 
 		{
 			tlist = tlist.stream().map(t -> { // map ke "b" aapko Book ka ek-ek obj deta jayega, but it will also expect
