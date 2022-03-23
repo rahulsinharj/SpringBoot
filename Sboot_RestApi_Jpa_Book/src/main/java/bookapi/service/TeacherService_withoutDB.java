@@ -33,11 +33,13 @@ public class TeacherService_withoutDB {
 	// Get single Book by ID
 	public Teacher getSingleTeacherById(int id) {
 		Teacher teacher = null;
-		try {
+		try 
+		{
 			teacher = tlist.stream().filter(t -> t.getTid() == id).findFirst().get();
 //			teacher = tlist.stream().filter(t -> t.getTid() == id).collect(Collectors.toList()).get(0);
 					
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -54,9 +56,11 @@ public class TeacherService_withoutDB {
 
 	// Saving a teacher
 	public Teacher saveTeacher(Teacher b) {
-		try {
+		try 
+		{
 			tlist.add(b);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return b;
@@ -65,9 +69,11 @@ public class TeacherService_withoutDB {
 	// Deleting a teacher , through its ID
 	public List<Teacher> deleteTeacherById(int tid) // Delete and show the rest teachers
 	{
-		try {
+		try 
+		{
 			tlist = tlist.stream().filter(t -> t.getTid() != tid).collect(Collectors.toList());
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return tlist;
@@ -75,7 +81,8 @@ public class TeacherService_withoutDB {
 
 //	public void deleteTeacherById(int bid)					// Delete but then NOT showing the rest teachers
 //	{
-//		try {
+//		try 
+//		{
 //			tlist = tlist.stream().filter(book -> book.getTid()!=bid).collect(Collectors.toList());
 //		} 
 //		catch (Exception e) {
@@ -84,7 +91,8 @@ public class TeacherService_withoutDB {
 //	}
 
 	public List<Teacher> updateTeacher(int bid, Teacher newtecher) {
-		try {
+		try 
+		{
 			tlist = tlist.stream().map(t -> { // map ke "b" aapko Book ka ek-ek obj deta jayega, but it will also expect
 												// one obj of same type in return.
 				if (t.getTid() == bid) {
@@ -93,7 +101,8 @@ public class TeacherService_withoutDB {
 				}
 				return t;
 			}).collect(Collectors.toList());
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 
