@@ -20,10 +20,10 @@ public class StudentCommandRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		try {
-			Student s1 = new Student(120, "Mohan" , "Delhi1");
-			Student s2 = new Student(121, "Shyam" , "Patna1");
-			Student s3 = new Student(122, "Gopal" , "Gaya1");
-			Student s4 = new Student(123, "Praveen" , "Bhopal1");
+			Student s1 = new Student(124, "Mohan" , "Delhi1");
+			Student s2 = new Student(125, "Shyam" , "Patna1");
+			Student s3 = new Student(126, "Gopal" , "Gaya1");
+			Student s4 = new Student(127, "Praveen" , "Bhopal1");
 			
 			studentService.insert(Arrays.asList(s1,s2,s3,s4));
 			
