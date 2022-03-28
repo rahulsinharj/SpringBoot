@@ -43,7 +43,10 @@ public class FileUploadController {
 			if(result) {
 				
 				// Returning imageFile in URL :
-				return 	ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(file.getOriginalFilename()).toUriString());
+				String imgUriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(file.getOriginalFilename()).toUriString();
+				System.out.println("User can see their Uploaded Image here  : "+imgUriString);
+				
+				return 	ResponseEntity.ok(imgUriString);
 					// ServletUriComponentsBuilder.fromCurrentContextPath()  => yaha tak we will get  http://localhost:8080/
 				
 //				return ResponseEntity.ok(file.getOriginalFilename() +" - file is successfully uploaded");

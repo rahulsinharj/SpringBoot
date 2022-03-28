@@ -3,10 +3,7 @@ package bookapi.helper;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +33,7 @@ public class FileUploadHelper {
 			
 			// File WRITE 
 			FileOutputStream fos = new FileOutputStream(UPLOAD_DIR+"\\"+multipartFile.getOriginalFilename());			// Also we can use File.separator in place of "\\"  
+				System.out.println("Images has been Uploaded to : "+UPLOAD_DIR +File.separator +multipartFile.getOriginalFilename());
 			fos.write(data);
 			
 			fos.close();
