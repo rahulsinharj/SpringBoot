@@ -8,9 +8,9 @@
 		<relativePath /> 										<!-- lookup parent from repository -->
 	</parent>
 	<groupId>bookapi</groupId>
-	<artifactId>Sboot_RestApi_Jpa_Book</artifactId>
+	<artifactId>Sboot_RestApi_Jpa_AND_UploadImage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Sboot_RestApi_Jpa_Book</name>
+	<name>Sboot_RestApi_Jpa_AND_UploadImage</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
