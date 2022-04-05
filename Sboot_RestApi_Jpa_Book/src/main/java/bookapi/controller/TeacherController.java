@@ -3,6 +3,8 @@ package bookapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +24,19 @@ public class TeacherController {
 	@Autowired
 	private TeacherService_withoutDB teacherService;
 
-	@GetMapping("/") 													// Handler for - Getting All Teachers
+/*	@GetMapping("/") 													// Handler for - Getting All Teachers
 	public List<Teacher> getTeachers() {
 		return this.teacherService.getAllTeachers();
+	}
+*/
+	@GetMapping("/") 													// Handler for - Getting All Teachers
+	public ResponseEntity<List<Teacher>> getTeachers() {
+		return new ResponseEntity<>(this.teacherService.getAllTeachers(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/home") 													// Handler for - Getting All Teachers
+	public ResponseEntity<Teacher> getOneTeacher() {
+		return new ResponseEntity<>(new Teacher(181, "Nirbhay Sinha", "Maths"),HttpStatus.OK);
 	}
 
 	@GetMapping("/{tid}") 												// Handler for - Getting Single Teacher
