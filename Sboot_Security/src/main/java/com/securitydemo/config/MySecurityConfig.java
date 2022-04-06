@@ -27,10 +27,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
 //		
-//		http.authorizeRequests()		// Hame request ko authorize karna hai
-//			.anyRequest()				// Jo koi bhi request ho , sabko
-//			.authenticated()			// Jo bhi permission access karne hai wo pehle authenticated/check hongi
-//			.and().httpBasic();			// And the Mechanism that we will use will be basic-http-mechanism.
+//		http.authorizeRequests()				// Hame request ko authorize karna hai
+//			.anyRequest().authenticated()		// Jo koi bhi request ho , sabko Jo bhi permission access karne hai wo pehle authenticated/check hongi
+//			.and().httpBasic();					// And the Mechanism that we will use will be basic-http-mechanism.
 //	}
 	
 	
@@ -45,8 +44,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //			.antMatchers("/admin/**").hasRole("ADMIN")			// bydefault role me "ROLE_" already append rehta hai.	
 //			.antMatchers("/users/**").hasRole("NORMAL")			// If we comment this line, that means we are not mentioning here security for "/users" => that means "/users" ke liye koi ROLE_ based authentication nhi karna hai, bas normal username&password Authentication hoga.  
 //			.antMatchers("/public/**").permitAll()		// Better to use .antMatchers("/**").permitAll()	// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
-//			.anyRequest()				
-//			.authenticated()			
+//			.anyRequest().authenticated()			
 //			.and().httpBasic();			
 //	}
 	
@@ -67,8 +65,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/admin/**").hasRole("ADMIN")		// bydefault role me "ROLE_" already append rehta hai.	
 			.antMatchers("/users/**").hasRole("NORMAL")		// If we comment this line, that means we are not mentioning here security for "/users" => that means "/users" ke liye koi ROLE_ based authentication nhi karna hai, bas normal username&password Authentication hoga.  
 			.antMatchers("/public/**").permitAll()	 		// Better to use .antMatchers("/**").permitAll()	// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
-			.anyRequest()				
-			.authenticated()			
+			.anyRequest().authenticated()			
 //			.and().httpBasic();								// Basic-HTTP Based Authentication
 			.and().formLogin();								// SpringBoot bydefault-created "Inbuilt Form Page" Based Authentication
 //			.and().formLogin().loginPage("/signin"); 		// "Custom LOGIN/Signin" page bhi banke uske authentication page ki tarah treat karwa sakte hai.
@@ -86,8 +83,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //			.antMatchers("/admin/**").hasRole("ADMIN")			// bydefault role me "ROLE_" already append rehta hai.	
 //			.antMatchers("/users/**").hasRole("NORMAL")			// If we comment this line, that means we are not mentioning here security for "/users" => that means "/users" ke liye koi ROLE_ based authentication nhi karna hai, bas normal username&password Authentication hoga.  
 //			.antMatchers("/public/**").permitAll()				// yaha permitAll() maane ki "/public/**" se start hone wale URL me koi Authentication mat lagao 	// {.antMatchers("/home","/login","/register").permitAll()	notRecommented to use URL separately, better to use classLevel Mapping URL } 		
-//			.anyRequest()				
-//			.authenticated()			
+//			.anyRequest().authenticated()			
 //			.and().httpBasic();			
 //	}	
 	
@@ -105,7 +101,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //		auth.inMemoryAuthentication().withUser("vikas").password("vikas1").roles("NORMAL");			
 //	}
 
-/* 	For Creating passwords as "plain text" as it is given my user . 
+/* 	For Creating passwords as "plain text" as-it-is given my user . 
  -------------------------------------------------------------------------------------------------------------------*/
 //	@Bean
 //	public PasswordEncoder passwordEncoder() {
