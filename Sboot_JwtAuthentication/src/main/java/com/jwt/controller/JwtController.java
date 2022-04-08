@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jwt.config.CustomUserDetailsService;
-import com.jwt.helper.JwtUtil;
 import com.jwt.model.JwtRequest;
 import com.jwt.model.JwtResponse;
+import com.jwt.util.JwtUtil;
 
 @RestController
 public class JwtController {

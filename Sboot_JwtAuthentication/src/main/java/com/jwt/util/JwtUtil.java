@@ -1,4 +1,4 @@
-package com.jwt.helper;
+package com.jwt.util;
 
 import java.util.Date;
 import java.util.HashMap;

@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.jwt.helper.JwtUtil;
+import com.jwt.util.JwtUtil;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
