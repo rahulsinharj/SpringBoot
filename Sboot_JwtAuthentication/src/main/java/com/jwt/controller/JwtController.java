@@ -23,7 +23,7 @@ public class JwtController {
 	private CustomUserDetailsService customUserDetailsService;
 	
 	@Autowired
-	private JwtUtility jwtUtil;
+	private JwtUtility jwtUtility;
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -51,7 +51,7 @@ public class JwtController {
 		
 		// Fine Area :
 		UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
-		String token = this.jwtUtil.generateToken(userDetails);
+		String token = this.jwtUtility.generateToken(userDetails);
 			System.out.println("Token : "+token);
 		
 		// {"token" : "value"}	
