@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jwt.config.CustomUserDetailsService;
 import com.jwt.model.JwtRequest;
 import com.jwt.model.JwtResponse;
-import com.jwt.util.JwtUtil;
+import com.jwt.service.CustomUserDetailsService;
+import com.jwt.util.JwtUtility;
 
 @RestController
 public class JwtController {
@@ -23,13 +23,13 @@ public class JwtController {
 	private CustomUserDetailsService customUserDetailsService;
 	
 	@Autowired
-	private JwtUtil jwtUtil;
+	private JwtUtility jwtUtil;
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-	@PostMapping("/token")
-	public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception
+	@PostMapping("/auth")
+	public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest jwtRequest) throws Exception
 	{
 		System.out.println("JwtRequest : " +jwtRequest);
 		

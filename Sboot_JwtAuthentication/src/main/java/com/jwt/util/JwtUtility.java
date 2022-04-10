@@ -13,7 +13,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component				// iss Util class ke paas wo sare methods honge - for generating, and validating Token, isExpired method
-public class JwtUtil {
+public class JwtUtility {
 
 	private static final long serialVersionUID = -2550185165626007488L;
 

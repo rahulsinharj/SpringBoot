@@ -1,4 +1,4 @@
-package com.jwt.config;
+package com.jwt.service;
 
 import java.util.ArrayList;
 

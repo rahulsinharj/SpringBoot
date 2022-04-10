@@ -12,6 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.jwt.service.CustomUserDetailsService;
+
 @Configuration						// @Configuration - So that we can declare beans here
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {

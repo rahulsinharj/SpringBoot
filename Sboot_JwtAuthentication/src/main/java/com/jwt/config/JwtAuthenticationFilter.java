@@ -14,7 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.jwt.util.JwtUtil;
+import com.jwt.service.CustomUserDetailsService;
+import com.jwt.util.JwtUtility;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -22,59 +23,53 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private CustomUserDetailsService customUserDetailsService;
 	
 	@Autowired
-	private JwtUtil jwtUtil;
+	private JwtUtility jwtUtility;
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException 
 	{
-		try 
+		// Get Jwt
+		// And it is starting with Bearer
+		// Then Validate
+		
+		String requestTokenHeader = request.getHeader("Authorization");
+		String username = null;
+		String jwtToken = null;
+		
+		// Null And Format check ::
+		if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) 
 		{
-			// Get Jwt
-			// And it is starting with Bearer
-			// Then Validate
+			jwtToken = requestTokenHeader.substring(7);
 			
-			String requestTokenHeader = request.getHeader("Authorization");
-			String username = null;
-			String jwtToken = null;
-			
-			// Null And Format check ::
-			if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) 
+			try 
 			{
-				jwtToken = requestTokenHeader.substring(7);
-				
-				try 
-				{
-					username = this.jwtUtil.getUsernameFromToken(jwtToken);
-				} 
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null)
-		        {
+				username = this.jwtUtility.getUsernameFromToken(jwtToken);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null)
+	        {
 
-					UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
+				UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
 
-					//security
-					UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+				//security
+				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
-		            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+	            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-		            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+	            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
-		        }
-				else
-		        {
-					System.out.println("Token is not validated..");
-		        }
-				
+	        }
+			else
+	        {
+				System.out.println("Token is not validated..");
 	        }
 			
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+        }
 		
+
 	}
 
 	
