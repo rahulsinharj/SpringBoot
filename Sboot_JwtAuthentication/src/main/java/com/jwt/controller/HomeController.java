@@ -9,8 +9,8 @@ public class HomeController {
 	@RequestMapping("/welcome")
 	public String welcome()
 	{
-		String text = "This is private page. ";
-		text += "This page is not allowed to unauthenticated users.";
+		String text = "This is a private page. ";
+		text += "Welcome to this page, only allowed to unauthenticated users.";
 		
 		return text;
  	}

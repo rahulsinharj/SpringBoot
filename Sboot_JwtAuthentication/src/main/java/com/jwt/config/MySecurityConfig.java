@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.jwt.service.CustomUserDetailsService;
 
@@ -18,6 +19,9 @@ import com.jwt.service.CustomUserDetailsService;
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
+	
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception 
 	{
@@ -33,11 +37,12 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 			.cors().disable()
 			.authorizeRequests()					// Requests ko authtorize karni hai
-			.antMatchers("/token").permitAll()
+			.antMatchers("/auth").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);		// Session Management Policy "Stateless" rakhni hai. 
-			
+	
+		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
 	@Override	// Kaun sa Authentication use karna hai - InMemory/ or Dao auth
