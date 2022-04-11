@@ -10,7 +10,7 @@ public class HomeController {
 	public String welcome()
 	{
 		String text = "This is a private page. ";
-		text += "Welcome to this page, only allowed to unauthenticated users.";
+		text += "Welcome to this page, only allowed to Authenticated users.";
 		
 		return text;
  	}

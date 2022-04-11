@@ -36,21 +36,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException 
 	{
+		System.out.println("Inside Jwt-Authentication-FILTER");
+		
 		// Get Jwt
 		// And it is starting with Bearer
 		// Then Validate
 		
-		String requestTokenHeader = request.getHeader("Authorization");
+		String authorizationHeader = request.getHeader("Authorization");
 		String username = null;
 		String jwtToken = null;
 		
 		// Null And Format check ::
-		if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) 
+		if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) 
 		{
-			jwtToken = requestTokenHeader.substring(7);
+			jwtToken = authorizationHeader.substring(7);
 			
 			try {
-				username = this.jwtUtility.getUsernameFromToken(jwtToken);
+				username = this.jwtUtility.getUsernameFromToken(jwtToken);		// retrieve username from jwt token
+				System.out.println("Token Username : "+username);
 			} 
 			catch (IllegalArgumentException e) {
 				System.out.println("Unable to get JWT Token");
@@ -72,7 +75,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		// Once we get the token, validate it.
 		if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null)
         {
-			UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
+			UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);	// Validating the USERNAME by retrieving the USER DETAILS (either from Database)
 
 			// If token is valid, configure Spring Security to manually set authentication.
 			if (jwtUtility.validateToken(jwtToken, userDetails)) 
