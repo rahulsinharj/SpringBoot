@@ -3,6 +3,7 @@ package com.jwt.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,11 +42,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 			.cors().disable()
 			.authorizeRequests()					// Requests ko authtorize karni hai
 			.antMatchers("/auth").permitAll()
+			.antMatchers(HttpMethod.OPTIONS).permitAll()
 			.anyRequest().authenticated()
-			.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)		// Session Management Policy "Stateless" rakhni hai. 
-			.and()
-			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);		// Allows configuring exception handling.
+			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)		// Session Management Policy "Stateless" rakhni hai. 
+			.and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);		// Allows configuring exception handling.
 		
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
