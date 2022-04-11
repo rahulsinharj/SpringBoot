@@ -22,6 +22,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 	
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception 
 	{
@@ -40,8 +43,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/auth").permitAll()
 			.anyRequest().authenticated()
 			.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);		// Session Management Policy "Stateless" rakhni hai. 
-	
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)		// Session Management Policy "Stateless" rakhni hai. 
+			.and()
+			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);		// Allows configuring exception handling.
+		
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 

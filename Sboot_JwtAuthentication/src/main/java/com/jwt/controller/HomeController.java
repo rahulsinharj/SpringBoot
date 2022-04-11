@@ -10,11 +10,16 @@ public class HomeController {
 	public String welcome()
 	{
 		String text = "This is a private page. ";
-		text += "Welcome to this page, only allowed to Authenticated users.";
-		
+		text += "Welcome to this page, only allowed to Authenticated users !";
 		return text;
  	}
 	
+	@RequestMapping("/hello")
+	public String hello()
+	{
+		String text = "Hello Authenticated user ! ";
+		return text;
+ 	}
 	
 	
 }
