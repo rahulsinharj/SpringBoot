@@ -2,6 +2,7 @@ package com.boot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,16 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 	@Qualifier("myImplA")
 	private InterfaceZ interfaceZ;
 	
+	@Value("${myNum1}")			// Use $ For values coming dynamically from Application.prop file
+	private int num1;
+	
+	//@Value("#{2+5}")			// Use # For inserting contant literal values
+	@Value("#{25}")	
+	private int num2;
+	
+	@Value("${myStr1}")	
+	private String str1;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(FirstSpringBootApplication.class, args);
 	}
@@ -24,6 +35,13 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		this.interfaceZ.m1();
+		
+		System.out.println("Fetching values from Application.properties file :: ");
+		
+		System.out.println("num1 : "+num1);
+		System.out.println("num2 : "+num2);
+		System.out.println("str1 : "+str1);
+		
 		
 	}
 }
