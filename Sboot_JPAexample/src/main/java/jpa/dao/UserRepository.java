@@ -25,7 +25,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	
 	// Custom HQL Queries ::
 	
-	@Query("select usr from User usr")						// "from User usr" , this query will also work same way ; but "select user" is somewhat more readable 
+	@Query("select u from User u")						// "from User usr" , this query will also work same way ; but "select user" is somewhat more readable 
 	public List<User> getAllUserHQL();
 	
 	@Query("select u from User u where u.city = :ct ")					// : colon ke baad ct tak space nhi hona chahiye, continuous hone chahiye :ct 
