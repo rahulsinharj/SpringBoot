@@ -40,6 +40,9 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	@Query("select u from User u where u.status like %:inword% ")					// u.status having inbetween some word 
 	public List<User> getUserByStatusHavingWord(@Param("inword") String word);
 	
+	// case-in-sensitive searching
+	@Query("select u from User u where lower(u.name) like concat('%', :keyword,'%')")
+	public List<User> getNotesContainingKeyword(String keyword);
 	
 	// Custom Native SQL Queries ::
 	
