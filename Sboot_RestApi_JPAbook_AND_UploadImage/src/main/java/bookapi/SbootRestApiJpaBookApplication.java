@@ -12,7 +12,7 @@ public class SbootRestApiJpaBookApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SbootRestApiJpaBookApplication.class, args);
 		
-		System.out.println("Hello Rahul in SBOOT");
+		System.out.println("SBOOT with JPA Book & Upload image !");
 	}
 
 }
