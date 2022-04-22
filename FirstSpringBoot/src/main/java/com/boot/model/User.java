@@ -53,7 +53,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userEmail=" + userEmail + ", userName=" + userName + ", userPassword="
+		return "User [userId= " + userId + ", userEmail= " + userEmail + ", userName= " + userName + ", userPassword= "
 				+ userPassword + "]";
 	}
 	
