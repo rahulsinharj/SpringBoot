@@ -16,6 +16,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	{
 		if(username.equals("rahul"))
 		{
+			// Write your DB logic here 
 			return new User("rahul", "rahul123", new ArrayList<>());
 		}
 		else 
