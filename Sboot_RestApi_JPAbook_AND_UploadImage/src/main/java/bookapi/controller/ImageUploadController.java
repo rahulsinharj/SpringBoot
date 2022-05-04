@@ -14,14 +14,14 @@ import bookapi.payload.FileResponse;
 import bookapi.service.ImageUploadService;
 
 @RestController
-@RequestMapping("file")
+@RequestMapping("file")									
 public class ImageUploadController {
 
 	@Autowired
 	private ImageUploadService imageUploadService;
 	
 	@Value("${projectPath.uploadedImage}")
-	private String uploadPath; 
+	private String uploadPath; 							// 	images\
 	
 	@PostMapping("/upload")
 	public ResponseEntity<FileResponse> fileUploader(@RequestParam("image") MultipartFile imgfile)

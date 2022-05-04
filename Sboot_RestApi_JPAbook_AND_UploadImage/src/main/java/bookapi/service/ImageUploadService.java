@@ -33,7 +33,7 @@ public class ImageUploadService {
 
 			// File copy
 			Files.copy(imgfile.getInputStream(), Paths.get(filePath) , StandardCopyOption.REPLACE_EXISTING);
-			System.out.println(imgOriginalName + " image uploaded successfully !");
+			System.out.println(imgOriginalName + " image uploaded successfully at location "+Paths.get(filePath).toAbsolutePath());
 			return imgOriginalName;
 		} 
 		catch (Exception e) {
@@ -41,6 +41,18 @@ public class ImageUploadService {
 			return imgOriginalName;
 		}
 		
-
+/*
+ 	uploadPath								=	images\
+  	
+  		//	String filePath = uploadPath + File.separator + imgNewName;
+  	
+  	Paths.get(filePath)						=	images\63ec626c-f17c-44f9-bdfc-e700a3999456.jpg
+  	Paths.get(filePath).toAbsolutePath()	=	E:\Stu\Code Files\GIT Eclipse Files\SpringBoot\Sboot_RestApi_JPAbook_AND_UploadImage\images\d29e0480-9b93-4865-b7f4-b5dc7b8d0761.jpg   
+  	  
+  	
+  
+*/
+		
+		
 	}
 }
