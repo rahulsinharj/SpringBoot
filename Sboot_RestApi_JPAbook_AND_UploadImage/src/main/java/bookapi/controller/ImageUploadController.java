@@ -28,16 +28,16 @@ public class ImageUploadController {
 	{
 		try {
 			if(imgfile.isEmpty()) {
-				return new ResponseEntity<>(new FileResponse(imgfile.getOriginalFilename(), "Request must contain file !") , HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<>(new FileResponse(imgfile.getOriginalFilename(), "Request must contain file !") , HttpStatus.BAD_REQUEST);
 			}
 			
 			System.out.println("File size : " +imgfile.getSize()/1024 +" kb");	
 			if(imgfile.getSize() > (10*1048576)) {
-				return new ResponseEntity<>(new FileResponse(imgfile.getOriginalFilename(), "Image Size should be less than 10MB !") , HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<>(new FileResponse(imgfile.getOriginalFilename(), "Image Size should be less than 10MB !") , HttpStatus.BAD_REQUEST);
 			}
 			
 			if(!imgfile.getContentType().equals("image/jpeg")) {
-				return new ResponseEntity<>(new FileResponse(imgfile.getOriginalFilename(), "Only JPEG file content type is allowed") , HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<>(new FileResponse(imgfile.getOriginalFilename(), "Only JPEG file content type is allowed") , HttpStatus.BAD_REQUEST);
 			}
 			
 			String fileName = this.imageUploadService.uploadImage(this.uploadPath, imgfile);
