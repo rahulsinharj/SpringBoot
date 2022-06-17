@@ -91,15 +91,16 @@ public class TeacherService_withoutDB {
 //		}
 //	}
 
-	public List<Teacher> updateTeacher(int bid, Teacher newtecher) 
+	public List<Teacher> updateTeacher(int tid, Teacher updatedTeacher) 
 	{
 		try 
 		{
 			tlist = tlist.stream().map(t -> { // map ke "b" aapko Book ka ek-ek obj deta jayega, but it will also expect
 												// one obj of same type in return.
-				if (t.getTid() == bid) {
-					t.setTname(newtecher.getTname());
-					t.setTsubject(newtecher.getTsubject());
+				if (t.getTid() == tid) 
+				{
+					t.setTname(updatedTeacher.getTname());
+					t.setTsubject(updatedTeacher.getTsubject());
 				}
 				return t;
 			}).collect(Collectors.toList());
