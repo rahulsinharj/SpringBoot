@@ -32,21 +32,24 @@ public class TeacherController {
 	
 	
 /*	@GetMapping("/") 													// Handler for - Getting All Teachers
-	public List<Teacher> getTeachers() {
+	public List<Teacher> getTeachers() 
+	{
 		return this.teacherService.getAllTeachers();
 	}
 */
 
 //	@GetMapping(path =  "/", produces = "application/xml") 			// After adding "xml" dependency, Now here after restricting to xml format, now Nothing is required to add in Postman Header. 										
 	@GetMapping("/") 												// After adding "xml" dependency, Now here api will show the data as per the "Accept" header key in Postman = {application/json , application/xml }
-	public ResponseEntity<List<Teacher>> getTeachers() {				// Handler for - Getting All Teachers
+	public ResponseEntity<List<Teacher>> getTeachers() 				// Handler for - Getting All Teachers
+	{
 		return new ResponseEntity<>(this.teacherService.getAllTeachers(),HttpStatus.ACCEPTED);
 	}
 
 /*	
  	// Produces JSON in Response (bydefault) ::		
   	@GetMapping("/{tid}") 												// Handler for - Getting Single Teacher
-	public Teacher getSingleTeacher(@PathVariable("tid") int id) {
+	public Teacher getSingleTeacher(@PathVariable("tid") int id) 
+	{
 		Teacher t = this.teacherService.getSingleTeacherById(id);
 		System.out.println(t);
 		return t;
@@ -57,10 +60,14 @@ public class TeacherController {
 	@GetMapping(value = "/{tid}", 										
 			  	//produces = MediaType.APPLICATION_XML_VALUE)				// After adding "xml" dependency, Now here after only allowing XML, It will only strictly produce XML format data
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})		// After adding "xml" dependency, And since we have allowed XML & JSON both here. So now it will give data according to Header "Accept" = application/xml or application/json in Postman   
-	public Teacher getSingleTeacher(@PathVariable("tid") int id) {
+	public ResponseEntity<?> getSingleTeacher(@PathVariable("tid") int id) 
+	{
 		Teacher t = this.teacherService.getSingleTeacherById(id);
-		System.out.println(t);
-		return t;
+		System.out.println("Teacher : "+t);
+		if(t!=null)
+			return ResponseEntity.ok(t);
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No Record found, Try again !");
 	}
 
 																		// import org.springframework.http.MediaType
@@ -68,7 +75,8 @@ public class TeacherController {
 	@GetMapping(value = "/{tid}", 
 			  	consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE} , 		// Set Content-Type = application/xml , Accept = application/xml
 			  	produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE} )		// import org.springframework.http.MediaType
-	public Teacher getSingleTeacher(@PathVariable("tid") int id) {
+	public Teacher getSingleTeacher(@PathVariable("tid") int id) 
+	{
 		Teacher t = this.teacherService.getSingleTeacherById(id);
 		System.out.println(t);
 		return t;

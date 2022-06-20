@@ -35,8 +35,9 @@ public class TeacherService_withoutDB {
 	{
 		Teacher teacher = null;
 		try 
-		{
-			teacher = tlist.stream().filter(t -> t.getTid() == id).findFirst().get();
+		{														// findAny()	
+			teacher = tlist.stream().filter(t -> t.getTid() == id).findFirst().orElse(null);			// Here just NULL will be returned, without any EXCEPTION. 
+//			teacher = tlist.stream().filter(t -> t.getTid() == id).findFirst().get();					// Here Compiler will get EXCEPTION as well.
 //			teacher = tlist.stream().filter(t -> t.getTid() == id).collect(Collectors.toList()).get(0);					
 		} 
 		catch (Exception e) {
