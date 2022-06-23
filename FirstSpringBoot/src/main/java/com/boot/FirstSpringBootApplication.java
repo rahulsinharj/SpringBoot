@@ -1,5 +1,7 @@
 package com.boot;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +27,15 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 	
 	@Value("${myStr1}")	
 	private String str1;
+
+	@Value("${mylist1}")	
+	private List<String> list1;				// List of String
+
+	@Value("${mylist2}")	
+	private List<String> list2;				
+	
+	@Value("${mylist3}")	
+	private List<Integer> list3;			// List of Integer
 	
 	public static void main(String[] args) {
 		SpringApplication.run(FirstSpringBootApplication.class, args);
@@ -41,6 +52,9 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 		System.out.println("num1 : "+num1);
 		System.out.println("num2 : "+num2);
 		System.out.println("str1 : "+str1);
+		System.out.println("list1 : "+list1);
+		System.out.println("list2 : "+list2);
+		System.out.println("list3 : "+list3);
 		
 		
 	}
