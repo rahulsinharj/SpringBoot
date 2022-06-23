@@ -36,12 +36,7 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 	
 	@Value("${mylist3}")	
 	private List<Integer> list3;			// List of Integer
-	
-	public static void main(String[] args) {
-		SpringApplication.run(FirstSpringBootApplication.class, args);
-	}
-
-	
+		
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -57,5 +52,9 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 		System.out.println("list3 : "+list3);
 		
 		
+	}
+	
+	public static void main(String[] args) {
+		SpringApplication.run(FirstSpringBootApplication.class, args);
 	}
 }
