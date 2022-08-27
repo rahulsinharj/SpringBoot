@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bookapi.entity.Teacher;
@@ -25,12 +26,15 @@ public class TeacherController {
 	@Autowired
 	private TeacherService_withoutDB teacherService;
 
-	@GetMapping("/home") 													// Handler for - Getting a Teacher obj
+	@RequestMapping(value = "/home", method = RequestMethod.GET) 		// Handler for - Getting a Teacher obj
 	public ResponseEntity<Teacher> getOneTeacher() {
 		return new ResponseEntity<>(new Teacher(181, "Nirbhay Kr Sinha", "Business"),HttpStatus.OK);
 	}
 	
 	
+/*   [GET MAPPING] ::
+ -------------------------------------------------------------------------------------------------------------------*/   
+	   	
 /*	@GetMapping("/") 													// Handler for - Getting All Teachers
 	public List<Teacher> getTeachers() 
 	{
@@ -83,6 +87,10 @@ public class TeacherController {
 	}
 */
 	
+	
+/*   [POST MAPPING] ::
+ -------------------------------------------------------------------------------------------------------------------*/   
+	   	
 	@PostMapping("/") 													// Handler for - Creating new Book
 	public Teacher addTeacher(@RequestBody Teacher teacher) 			// @RequestBody - same way @RequestParam
 	{
@@ -92,6 +100,9 @@ public class TeacherController {
 	}
 
 	
+/*   [DELETE MAPPING] ::
+ -------------------------------------------------------------------------------------------------------------------*/   
+	   	
 	@DeleteMapping("/{tid}")												// Handler for - deleting single Teacher
 	public List<Teacher> deleteTeacher(@PathVariable("tid") int teacherId) 
 	{
@@ -99,6 +110,9 @@ public class TeacherController {
 	}
 
 	
+/*   [PUT MAPPING] ::
+ -------------------------------------------------------------------------------------------------------------------*/   
+	   
 	@PutMapping("/{tid}") 													// Handler for - Updating existing Teacher
 	public List<Teacher> updateTeacher(@PathVariable("tid") int teacherId, @RequestBody Teacher teacher) {
 		return this.teacherService.updateTeacher(teacherId, teacher);
