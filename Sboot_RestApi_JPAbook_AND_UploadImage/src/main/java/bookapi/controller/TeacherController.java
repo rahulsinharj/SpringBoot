@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import bookapi.entity.Teacher;
 import bookapi.service.TeacherService_withoutDB;
 
@@ -26,8 +29,25 @@ public class TeacherController {
 	@Autowired
 	private TeacherService_withoutDB teacherService;
 
+	// Converting Entity Objects into JSON String :
+	public void convertEntityToJson() 
+	{
+		Teacher teacher1 = new Teacher(181, "Nirbhay Kr Sinha", "Business");
+		String jsonString = "";
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			jsonString = objectMapper.writeValueAsString(teacher1);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		System.out.println(jsonString);
+		
+	}
+	
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET) 		// Handler for - Getting a Teacher obj
 	public ResponseEntity<Teacher> getOneTeacher() {
+		convertEntityToJson();
 		return new ResponseEntity<>(new Teacher(181, "Nirbhay Kr Sinha", "Business"),HttpStatus.OK);
 	}
 	
