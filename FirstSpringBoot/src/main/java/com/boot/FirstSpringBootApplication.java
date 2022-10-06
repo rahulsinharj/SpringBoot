@@ -21,7 +21,7 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 	@Value("${myNum1}")			// Use $ For values coming dynamically from Application.prop file
 	private int num1;
 	
-	//@Value("#{2+5}")			// Use # For inserting contant literal values
+	//@Value("#{2+5}")			// Use # For inserting constant literal values
 	@Value("#{25}")	
 	private int num2;
 	
