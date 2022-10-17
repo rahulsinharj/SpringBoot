@@ -19,7 +19,7 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 	private InterfaceZ interfaceZ;
 	
 	@Value("${myNum1}")			// Use $ For values coming dynamically from Application.prop file
-	private int num1;
+	private int num1;			// agar yaha =>		private final int num1 = 0;		aisa likh denge to Applicaion.prop files se data iska data Fetch nhi hoga, yehi final initialized value ki manyata hogi bas.	
 	
 	//@Value("#{2+5}")			// Use # For inserting constant literal values
 	@Value("#{25}")	
